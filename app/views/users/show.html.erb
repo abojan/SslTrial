@@ -10,9 +10,18 @@
 
 
 <div class="container">
-	<% if @user.albums.any? %>
-		<ul class="albums">
-			<%= render @albums %>
-		</ul>
+	<% if @albums.any? %>
+		<% @albums.each do |album| %>
+			<%= link_to(album) do %>
+				<p class="title"><%= album.title %></p>
+				<img src="<%= album.picture.url  if album.picture? %>">
+			<% end %>
+			<% if current_user?(album.user) %>	
+				<p class="delete_album"><%= link_to "delete", album, method: :delete, 
+																	 													 data: { confirm: "You sure?" }, 
+																	 													 class: "btn btn-primary"			 %>
+				</p>																 
+			<% end %>
+		<% end %>
 	<% end %>
 </div>

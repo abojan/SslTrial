@@ -2,9 +2,3 @@
 	<p class="title"><%= album.title %></p>
 	<%= image_tag album.picture.url if album.picture? %>
 </li>
-<% if current_user?(album.user) %>	
-	<p class="delete_album"><%= link_to "delete", album, method: :delete, 
-																	 data: { confirm: "You sure?" }, 
-																	 class: "btn btn-primary"			 %>
-	</p>																 
-<% end %>
