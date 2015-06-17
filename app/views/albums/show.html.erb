@@ -1,0 +1,13 @@
+<%= form_for([@album, @work], html: { multipart: true }) do |f| %>
+	<span class="picture">
+		<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+	</span>
+	<%= f.submit "Create", class: "btn btn-primary" %>
+<% end %>
+
+<% @works.each do |work| %>
+	<img src="<%= work.picture.url  if work.picture? %>">
+	<%= link_to "delete", work_path(work), method: :delete, 
+																			 								  data: { confirm: "You sure?"}%>
+<% end %> 																	 									
+

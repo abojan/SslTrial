@@ -2,6 +2,14 @@ class AlbumsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
   
+  def show
+    @album = Album.find(params[:id])
+    @works = @album.works.all
+    # debugger
+    @work = @album.works.build
+ 
+  end
+
   def create
    	@album = current_user.albums.build(album_params)
   	if @album.save
@@ -28,4 +36,5 @@ class AlbumsController < ApplicationController
   	def correct_user
   		@album = current_user.albums.find_by(id: params[:id])
   	end  
+
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150611130320) do
+ActiveRecord::Schema.define(version: 20150612085036) do
 
   create_table "albums", force: :cascade do |t|
     t.text     "title"
@@ -30,5 +30,14 @@ ActiveRecord::Schema.define(version: 20150611130320) do
     t.string   "password_digest"
     t.string   "remember_digest"
   end
+
+  create_table "works", force: :cascade do |t|
+    t.string   "picture"
+    t.integer  "album_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "works", ["album_id"], name: "index_works_on_album_id"
 
 end
